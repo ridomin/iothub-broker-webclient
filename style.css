@@ -1,0 +1,36 @@
+body {
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ margin: 0px
+}
+
+h1 {
+    margin: 5px
+}
+.input {
+    background-color: antiquewhite;
+    margin: 5px;
+    padding: 20px;
+    width: 800px;
+}
+.actionButtons {
+    margin: 10px;
+    text-align: center;
+}
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right
+}
+
+#connectionStatus {
+    background-color: silver;
+}
+
+#connectionStatus.connected {
+    background-color: lightgreen;
+    padding: 5px
+}
+​
+#output {
+    font-family: monospace;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test MQTT JS</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+    <h1>MQTT Client to connect to Azure IoT Hub Broker</h1>
+
+    <div id="connectionStatus" class="disconnected">
+        <span id="statusMessage">Not Initialized</span>
+        
+        <input type="button" value="Disconnect" id="disconnectButton" disabled="true">
+        <div id="errorMessages"></div>
+    </div>
+    
+    <div id="connectionInfo" class="input">
+        <div>
+            <label for="hostname">Host Name</label>
+            <input type="text" name="hostname" id="hostname" size="70" value="broker.azure-devices.net">
+        </div>
+        <div>
+            <label for="deviceId">Device Id</label> 
+            <input type="text" name="deviceId" id="deviceId" size="70" value="d4">
+        </div>
+        <div>
+            <label for="SasKey">SasKey</label> 
+            <input type="text" name="key" id="key" size="70" value="MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA=">
+        </div>
+        <div class="actionButtons">
+            <input type="button" value="Connect" id="connectButton">
+           
+        </div>
+    </div>
+    <div id="output"></div>
+    <script src="index.js" type="module"></script>
+</body>
+</html>
