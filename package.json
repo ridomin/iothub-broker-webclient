@@ -1,0 +1,28 @@
+{
+  "name": "iothub-broker-webclient",
+  "version": "1.0.0",
+  "description": "JS Browser Library to connect to Azure IoT Hub, based on MQTT.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ridomin/iothub-broker-webclient.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ridomin/iothub-broker-webclient/issues"
+  },
+  "homepage": "https://github.com/ridomin/iothub-broker-webclient#readme",
+  "devDependencies": {
+    "standard": "^16.0.4"
+  },
+  "standard": {
+    "globals": [
+      "mqtt"
+    ]
+  }
+}
