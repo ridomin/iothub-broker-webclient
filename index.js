@@ -5,6 +5,7 @@ const gbid = id => document.getElementById(id)
 const bindUI = () => {
     gbid('connectButton').onclick = async() => await connectClient()
     gbid('disconnectButton').onclick = async() => await disconnectClient()
+    gbid('subButton').onclick = async() => await subscribe()
 }
 
 const connectStatus = (isConnected, message) => {
@@ -17,11 +18,13 @@ const connectStatus = (isConnected, message) => {
         gbid('connectionInfo').style.display='none'
         gbid('connectButton').disabled = true
         gbid('disconnectButton').disabled = false
+        gbid('topicsSubscriptions').style.display='block'
     } else {
         gbid('connectionInfo').style.display='block'
         statusDiv.className = 'disconnected'
         gbid('connectButton').disabled = false
         gbid('disconnectButton').disabled = true
+        gbid('topicsSubscriptions').style.display='none'
     }
     statusMsg.innerText = message
 }
@@ -50,6 +53,12 @@ const connectClient = async () => {
         el.innerText += t + '\n'
         el.innerText += ' ' +m + '\n'
     })
-    client.subscribe('vehicles/#')
 }
+
+const subscribe = () => {
+    const topicName = gbid('topicName').value
+    client.subscribe(topicName)
+    gbid('subscribedTopics').innerText += topicName + '\n'
+}
+
 bindUI()

@@ -34,3 +34,8 @@ label {
 #output {
     font-family: monospace;
 }
+
+#topicsSubscriptions {
+    display: none;
+    margin: 5px
+}
