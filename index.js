@@ -45,7 +45,7 @@ const connectClient = async () => {
     const [username, password] = await getIoTHubV2Credentials(hostname, deviceId, key, 60)
     client = mqtt.connect(`wss://${hostname}:443/mqtt`, { clientId: deviceId, username, password })
     client.on('connect', () => connectStatus(true, `Conneted to ${hostname} as ${deviceId} device`))
-    //client.on('close', () => connectStatus(false, `Connection Closed`))
+    client.on('offline', () => connectStatus(false, `Connection Closed`))
     client.on('end', () => connectStatus(false, `Ended`))
     client.on('error', err => showError(err.message))
     client.on('message', (t, m) => {
