@@ -1,5 +1,4 @@
-import {getIoTHubV2Credentials} from 'https://www.unpkg.com/iothub-auth'
-
+import {getIoTHubV1Credentials,getIoTHubV2Credentials} from 'https://unpkg.com/iothub-auth'
 const gbid = id => document.getElementById(id)
 
 const bindUI = () => {
@@ -42,7 +41,17 @@ const connectClient = async () => {
     const hostname = gbid('hostname').value 
     const deviceId = gbid('deviceId').value
     const key = gbid('key').value
-    const [username, password] = await getIoTHubV2Credentials(hostname, deviceId, key, 60)
+
+    const useV2 = gbid('enablePreview').checked
+    let username, password
+    if (useV2)
+    {
+        [username, password] = await getIoTHubV2Credentials(hostname, deviceId, key, 60)
+    }
+    else
+    {
+         [username, password] = await getIoTHubV1Credentials(hostname, deviceId, key, 60)
+    }
     client = mqtt.connect(`wss://${hostname}:443/mqtt`, { clientId: deviceId, username, password })
     client.on('connect', () => connectStatus(true, `Conneted to ${hostname} as ${deviceId} device`))
     client.on('offline', () => connectStatus(false, `Connection Closed`))
