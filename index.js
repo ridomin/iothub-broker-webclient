@@ -44,15 +44,18 @@ const connectClient = async () => {
 
     const useV2 = gbid('enablePreview').checked
     let username, password
+    let websocket
     if (useV2)
     {
         [username, password] = await getIoTHubV2Credentials(hostname, deviceId, key, 60)
+        websocket = 'mqtt'
     }
     else
     {
-         [username, password] = await getIoTHubV1Credentials(hostname, deviceId, key, 60)
+        [username, password] = await getIoTHubV1Credentials(hostname, deviceId, key, 60)
+        websocket = '$iothub/websocket' 
     }
-    client = mqtt.connect(`wss://${hostname}:443/mqtt`, { clientId: deviceId, username, password })
+    client = mqtt.connect(`wss://${hostname}:443/${websocket}`, { clientId: deviceId, username, password })
     client.on('connect', () => connectStatus(true, `Conneted to ${hostname} as ${deviceId} device`))
     client.on('offline', () => connectStatus(false, `Connection Closed`))
     client.on('end', () => connectStatus(false, `Ended`))
